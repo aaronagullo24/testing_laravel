@@ -7,17 +7,15 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-class ExampleTest extends TestCase
+class AboutPageTest extends TestCase
 {
-    /**
-     * A basic test example.
-     *
-     * @return void
-     */
-    public function testBasicTest()
-    {
-        $response = $this->get('/');
+   
+    public function testCanViewAboutPage(){
 
-        $response->assertStatus(200);
+        $resp=$this->get('/about');
+        $resp->assertStatus(200);
+        $resp->assertSee("About us");
+
     }
+
 }
