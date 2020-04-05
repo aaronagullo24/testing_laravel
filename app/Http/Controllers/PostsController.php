@@ -13,21 +13,28 @@ class PostsController extends Controller
         try {
             $post = Post::findOrFail($id);
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
-            
-            abort(404,'page not found');
+
+            abort(404, 'page not found');
         }
 
         return view('post')->withPost($post);
     }
 
-    public function showAllPosts(){
+    public function showAllPosts()
+    {
         return view('posts')->withPosts(Post::all());
     }
 
-    public function storePost(){
-        $post=Post::create([
-            'title'=>request()->title,
-            'body'=>request()->body
+    public function storePost()
+    {
+        $r = request();
+        $this->validate($r, [
+            'title' => 'required',
+            'body'=>'required'
+        ]);
+        $post = Post::create([
+            'title' => request()->title,
+            'body' => request()->body
         ]);
     }
 }
