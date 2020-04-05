@@ -23,4 +23,11 @@ class PostsController extends Controller
     public function showAllPosts(){
         return view('posts')->withPosts(Post::all());
     }
+
+    public function storePost(){
+        $post=Post::create([
+            'title'=>request()->title,
+            'body'=>request()->body
+        ]);
+    }
 }
