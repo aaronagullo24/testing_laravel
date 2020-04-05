@@ -22,9 +22,4 @@ Route::get('/about',function(){
 
 });
 
-Route::get('/post/{id}',function($id){
-
-    $post=\App\Post::find($id);
-    return view('post')->withPost($post);
-
-});
+Route::get('/post/{id}','PostsController@index');
