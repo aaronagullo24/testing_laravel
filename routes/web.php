@@ -21,3 +21,10 @@ Route::get('/about',function(){
     return view('about');
 
 });
+
+Route::get('/post/{id}',function($id){
+
+    $post=\App\Post::find($id);
+    return view('post')->withPost($post);
+
+});

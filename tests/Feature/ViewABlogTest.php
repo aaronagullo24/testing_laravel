@@ -29,7 +29,7 @@ class ViewABlogTest extends TestCase
 
         $resp->assertSee($post->body);
 
-        $resp->assertSee($post->created_at);
+        $resp->assertSee($post->created_at->toFormattedDateString());
 
     }
 
