@@ -14,11 +14,12 @@ class ViewABlogTest extends TestCase
 
     use DatabaseMigrations;
 
-    public function testCanViewABlogPost(){
-        
+    public function testCanViewABlogPost()
+    {
+
         $post = Post::create([
-            'title'=>'A simple title',
-            'body'=>'A simple body',
+            'title' => 'A simple title',
+            'body' => 'A simple body',
         ]);
 
         $resp = $this->get("/post/{$post->id}");
@@ -30,7 +31,19 @@ class ViewABlogTest extends TestCase
         $resp->assertSee($post->body);
 
         $resp->assertSee($post->created_at->toFormattedDateString());
-
     }
+    /**
+     * @group post-not-found
+     * @return [Type] [description]
+     */
 
+    public function testViewA404PageWhenPostIsNotFound()
+    {
+
+        $resp = $this->get('post/INVALID_ID');
+
+        $resp->assertStatus(404);
+
+        $resp->assertSee("The page you are looking for could not be found");
+    }
 }

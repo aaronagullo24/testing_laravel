@@ -16,10 +16,9 @@ Route::get('/', function () {
 });
 
 
-Route::get('/about',function(){
+Route::get('/about', function () {
 
     return view('about');
-
 });
 
-Route::get('/post/{id}','PostsController@index');
+Route::get('/post/{id}', 'PostsController@index');
