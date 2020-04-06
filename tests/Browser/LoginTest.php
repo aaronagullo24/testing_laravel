@@ -43,4 +43,5 @@ class LoginTest extends DuskTestCase
                 ->assertSee($post->createdAt());
         });
     }
+    
 }
